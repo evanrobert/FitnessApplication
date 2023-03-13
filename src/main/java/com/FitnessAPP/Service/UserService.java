@@ -1,8 +1,11 @@
 package com.FitnessAPP.Service;
 
-import com.FitnessAPP.UserInfo.UserRepo;
+import com.FitnessAPP.Repos.UserRepo;
+import com.FitnessAPP.UserInfo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -12,5 +15,9 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
-}
+
+
+
+    }
+
 

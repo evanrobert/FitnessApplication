@@ -1,5 +1,8 @@
 package com.FitnessAPP.UserInfo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.lang.Nullable;
 
@@ -21,7 +24,7 @@ public class User {
     @GeneratedValue
     public long id;
     @Column
-    @Nullable
+    @NotNull
     public String first_name;
     @Column
     @Nullable
@@ -34,10 +37,14 @@ public class User {
     public String email;
     @Column
     @Nullable
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String address;
 
 
-
+// Two different classes 1 for http one for DB
+    //Docker contain app. Spin up apache/ubuntu compile copy to jar run java command.
+    // Container is isolated, expose port through docker.
+    //Dockerize app
 
 
 }
