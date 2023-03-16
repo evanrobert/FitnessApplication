@@ -38,13 +38,15 @@ public class UserController {
                 .age(user.getAge()).email(user.getEmail()).address(user.getAddress()).build());
         return ResponseEntity.created(new URI("/user" + task.getId())).body(task);
     }
-    @PostMapping(path = "/workout",produces = MediaType.TEXT_HTML_VALUE)
-    public ResponseEntity<Workout> workoutBuilder (@RequestBody(required = true)Workout workout) throws URISyntaxException{
-       Workout task = workoutRepo.save(Workout.builder().Monday(workout.getMonday()).Tuesday(workout.
-               getTuesday()).Wensday(workout.getWensday()).Thursday(workout.getThursday()).Friday(workout.getFriday()).Saturday(workout.getSaturday())
-               .Sunday(workout.getSunday()).build());
-       return ResponseEntity.created(new URI("/index" + task.getId())).body(task);
+
+    @PostMapping(path = "/workout", produces = MediaType.TEXT_HTML_VALUE)
+    public ResponseEntity<Workout> workoutBuilder(@ModelAttribute Workout workout) throws URISyntaxException {
+        Workout task = workoutRepo.save(workout);
+        return ResponseEntity.created(new URI("/workout" + task.getId())).body(task);
     }
+
+
+
 
 
 
