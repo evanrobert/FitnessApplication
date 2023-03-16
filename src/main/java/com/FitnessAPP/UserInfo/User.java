@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user_information")
@@ -39,6 +40,10 @@ public class User {
     @Nullable
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String address;
+    @OneToMany(mappedBy = "user")
+    public List <MuscleGroups> muscleGroups;
+
+
 
 
 // Two different classes 1 for http one for DB

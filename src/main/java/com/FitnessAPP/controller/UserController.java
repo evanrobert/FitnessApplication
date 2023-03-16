@@ -1,8 +1,10 @@
 package com.FitnessAPP.controller;
 
+import com.FitnessAPP.Repos.MuscleGroupRepo;
 import com.FitnessAPP.Repos.WorkoutRepo;
 import com.FitnessAPP.Service.UserService;
 import com.FitnessAPP.Service.WorkoutService;
+import com.FitnessAPP.UserInfo.MuscleGroups;
 import com.FitnessAPP.UserInfo.User;
 import com.FitnessAPP.Repos.UserRepo;
 import com.FitnessAPP.UserInfo.Workout;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -29,6 +32,8 @@ public class UserController {
     UserService userService;
     @Autowired
     WorkoutRepo workoutRepo;
+    @Autowired
+    MuscleGroupRepo muscleGroupRepo;
 
 
     //PostMapping
@@ -44,14 +49,6 @@ public class UserController {
         Workout task = workoutRepo.save(workout);
         return ResponseEntity.created(new URI("/workout" + task.getId())).body(task);
     }
-
-
-
-
-
-
-
-
     @GetMapping(path = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Optional<User> getUser(@PathVariable Long id) {
         Optional<User> user = userRepo.findById(id);
@@ -71,12 +68,12 @@ public class UserController {
         Optional<User> getUserByEmail = userRepo.findByEmail(email);
         return getUserByEmail;
     }
-//    @GetMapping(path = "index", produces = MediaType.TEXT_HTML_VALUE)
-//    public String getHtml(Model model){
-//        model.addAttribute("message","Hello");
-//        workoutRepo.save(model)
-//        return "index";
-//    }
+    @GetMapping(path = "/muscle-selection/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<MuscleGroups> muscleGroups(@PathVariable List muscles){
+        List<MuscleGroups> muscleGroups = muscleGroupRepo.findAll();
+        return muscleGroups;
+    }
+
 
 
 }
