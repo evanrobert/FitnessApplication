@@ -4,15 +4,40 @@
     <title Workout Schedule></title>
     <style>
        body{
-       background-color: #f5f242;
+       background-color: #3492eb;
        }
    </style>
 </head>
 <body>
 <h1> Workout Schedule </h1>
 <form action="/workout" method="post">
-    <h5 for="monday">Monday</h5>
-    <input type="text" id="monday" name="monday"><br>
+<!--    <h5 for="monday">Monday</h5>-->
+    <label for="mondayWorkouts">Monday</label>
+    <select id="mondayWorkouts" name="mondayWorkouts">
+        {% for workout in workouts if workout.monday %}
+        <option value="{{ workout.id }}"> <option value="">--Please select a muscle group--</option>
+        <option value="chest">Chest</option>
+        <option value="frontDelt">Front Delts</option>
+        <option value="delt">Delts</option>
+        <option value="rearDelt">Rear Delts</option>
+        <option value="traps">Traps</option>
+        <option value="biceps">Biceps</option>
+        <option value="triceps">Triceps</option>
+        <option value="foreArms">Forearms</option>
+        <option value="hamstrings">Hamstrings</option>
+        <option value="quads">Quads</option>
+        <option value="calves">Calves</option>
+        <option value="back">Back</option>
+        <option value="core">Core</option>
+        <option value="cardio">Cardio</option> }}</option>
+        {% endfor %}
+    </select>
+
+<!--    <input type="text" id="monday" name="monday"><br>-->
+<!--    <label for="muscle-group-select">Select a muscle group:</label>-->
+<!--    <select id="muscle-group-select" name="muscleGroup">-->
+    </select>
+
     <h5 for=" tuesday">Tuesday</h5>
     <input type="text" id="tuesday" name="tuesday"><br>
     <h5 for="wensday">Wensday</h5>
